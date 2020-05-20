@@ -5,5 +5,5 @@ Several Advanced Hunting queries that can be imported into Microsoft Defender Se
 
 Used them to create charts or custom detections.
 
-
+Example:
 ![](Example.png)
