@@ -1,0 +1,8 @@
+// Check the software policies registry for Windows Defender to see if the value of DisableAntiSpyware was turned off by setting the dword to 1
+// by Dan Kiraly
+RegistryEvents 
+| where RegistryKey == @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender"
+| where RegistryValueName == "DisableAntiSpyware"
+| where RegistryValueType == "Dword"
+| where ActionType == "RegistryValueSet"
+| where RegistryValueData == "1"
