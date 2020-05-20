@@ -1,0 +1,6 @@
+// Find unmanaged PowerShell sessions
+//by Dan Kiraly
+DeviceEvents
+| where ActionType == "PowerShellCommand"
+| where InitiatingProcessCommandLine !contains "powershell" 
+| project Timestamp, InitiatingProcessFileName, ActionType, DeviceName, InitiatingProcessCommandLine, AdditionalFields, DeviceId, ReportId
