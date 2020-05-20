@@ -1,0 +1,8 @@
+// Check the software policies registry for Windows Defender to see if the value of DisableRealtimeMonitoring was turned off by setting the dword to 1
+// by Dan Kiraly
+DeviceRegistryEvents 
+| where RegistryKey == @"HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender"
+| where RegistryValueName == "DisableRealtimeMonitoring"
+| where RegistryValueType == "Dword"
+| where ActionType == "RegistryValueSet"
+| where RegistryValueData == "1"
