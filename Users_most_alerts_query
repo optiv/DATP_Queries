@@ -1,0 +1,13 @@
+// Users with the most alerts events
+// by Dan Kiraly
+let all_affected_hosts=
+DeviceAlertEvents
+| where Severity != "info"
+| summarize makelist(DeviceName);
+DeviceInfo
+| where DeviceName in (all_affected_hosts)
+| mvexpand todynamic(LoggedOnUsers)
+| extend ParsedFields = parsejson(LoggedOnUsers)
+| project UserName = ParsedFields.UserName
+| summarize count () by tostring(UserName)
+| render  piechart 
