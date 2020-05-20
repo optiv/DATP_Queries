@@ -1,0 +1,18 @@
+// Used to create pie chart of MITRE ATT&CK Tactics seen in Defender Alerts
+// Note: Not all DATP alerts contain ATT&CK Tactics
+// by Dan Kiraly
+DeviceAlertEvents 
+| where Category == "InitialAccess"
+or Category == "Execution"
+or  Category == "Persistence"
+or Category == "PrivilegeEscalation"
+or Category == "DefenseEvasion"
+or Category == "CredentialAccess"
+or Category == "Discovery"
+or Category == "LateralMovement"
+or Category == "Collection"
+or Category == "CommandAndControl"
+or Category == "Exfiltration"
+or Category == "Impact"
+| summarize count() by Category
+| render piechart
