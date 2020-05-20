@@ -1,0 +1,8 @@
+// Used to create bar chart of MITRE ATT&CK Techniques seen in Defender Alerts
+// Note: Not all DATP alerts contain ATT&CK Techniques
+// by Dan Kiraly
+DeviceAlertEvents 
+| where AttackTechniques != ""
+| mvexpand todynamic(AttackTechniques)
+| summarize count() by tostring(AttackTechniques)
+| render barchart
