@@ -1,0 +1,10 @@
+//Return the Top 10 FileNames found in DeviceAlertEvents for a specific Category.
+//User must define Category. Category set to Execution
+//User must define timerange
+//by Dan Kiraly
+DeviceAlertEvents
+| where Category == 'Execution'
+| where FileName != ""
+| summarize count() by tostring(FileName) 
+| order by count_ desc
+| limit 10
