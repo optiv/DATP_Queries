@@ -1,0 +1,7 @@
+//Return the Top 10 Titles
+//User must define timerange
+//by Dan Kiraly
+DeviceAlertEvents
+| summarize count() by tostring(Title)
+| order by count_ desc
+| limit 10
