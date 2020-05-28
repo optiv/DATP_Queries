@@ -1,0 +1,7 @@
+//Return the DeviceNames of host associated with the most alerts.
+//User must define timerange
+//by Dan Kiraly
+DeviceAlertEvents
+| summarize count() by tostring(DeviceName)
+| order by count_ desc
+| limit 10
