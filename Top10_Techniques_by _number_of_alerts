@@ -1,0 +1,8 @@
+//Return the Top 10 of ATT&CK Techniques with the most alerts.
+//User must define timerange
+//by Dan Kiraly
+DeviceAlertEvents
+| mvexpand todynamic(AttackTechniques)
+| summarize count() by tostring(AttackTechniques)
+| order by count_ desc
+| limit 10
